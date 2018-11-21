@@ -5,16 +5,20 @@ use std::net::TcpListener;
 use std::thread;
 use std::time::Duration;
 
+extern crate simple_web_server;
+use simple_web_server::ThreadPool;
+
 fn main() {
     // The 'bind' function return a new TcpListener instance.
     // We use 'unwrap' to stop the program if errors happen.
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+    let pool = ThreadPool::new(4);
 
     // 'incoming' returns an iterator that gives us a sequence of 'TcpStream'.
     for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        thread::spawn(|| {
+        pool.execute(|| {
             handle_connection(stream);
         });
     }

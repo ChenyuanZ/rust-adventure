@@ -2,8 +2,10 @@
 
 * **arm**: an arm consists of a pattern and the code that should be run if the value given to the beginning of the `match` expression fits that arm’s pattern.
 * **associated function**: static function
+* **closure**
 * **crate**: library
 * **enum**
+* **trait**
 
 
 # Rules
